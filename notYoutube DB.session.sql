@@ -8,7 +8,7 @@ CREATE TABLE users_notYuotube(
 DROP TABLE users_notYuotube;
 
 CREATE TABLE video (
-  id bigserial primary key,
+  id serial primary key,
   title VARCHAR(256) NOT NULL check(title !=''),
   category VARCHAR(256) NOT NULL check(category !=''),
   created_video timestamp NOT NULL DEFAULT CURRENT_DATE,
@@ -18,16 +18,15 @@ CREATE TABLE video (
 DROP TABLE video;
 
 CREATE TABLE coments(
-  id bigserial primary key,
-   created_coments timestamp NOT NULL DEFAULT CURRENT_DATE,
+  id serial PRIMARY KEY,
+  created_coments timestamp NOT NULL DEFAULT CURRENT_DATE,
   body_coments VARCHAR(500) NOT NULL check(body_coments !=''),
   user_id int NOT NULL REFERENCES users_notYuotube(id),
   video_id int NOT NULL REFERENCES video(id)
 );
 
 CREATE TABLE like_video(
-  id bigserial primary key,
   isLike BOOLEAN,
   video_id int NOT NULL REFERENCES video(id),
   user_id int NOT NULL REFERENCES users_notYuotube(id)
- )
+ );
